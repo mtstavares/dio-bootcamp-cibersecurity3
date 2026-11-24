@@ -10,3 +10,18 @@ Thumbs.db
 # Logs e temporários
 *.log
 .tmp/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+.hermes/
+*.db
+*.sqlite*
+*.zip
+*.pem
+*.key
+credentials.json
+auth.json
+credential_pool.json

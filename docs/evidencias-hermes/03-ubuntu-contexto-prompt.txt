@@ -1,0 +1,1 @@
+Tenho um servidor Ubuntu exposto na internet. Quero deixa-lo mais seguro. Que comando devo executar primeiro?

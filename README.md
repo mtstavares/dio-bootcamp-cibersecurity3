@@ -1,142 +1,108 @@
-# 🤖 DIO Agent
+# DIO Agent — Mentor de cibersegurança
 
-> Seu mentor com Inteligência Artificial para aprender mais e melhor na [DIO](https://dio.me).
+Especialização do [DIO Agent](https://github.com/digitalinnovationone/dio-agent)
+para aprender análise defensiva de vulnerabilidades com contexto, evidências
+e correções verificáveis. O objetivo é desenvolver raciocínio de AppSec e
+entender o ambiente antes de sugerir comandos. Não há treinamento de modelo:
+o comportamento é orientado por arquivos Markdown.
 
-O **DIO Agent** é um agente de IA que acompanha você na sua jornada de estudos. Ele conhece as experiências da DIO (Bootcamps, Formações, Cursos, Desafios e muito mais) e ajuda você a estudar, praticar e planejar a sua carreira.
+## Melhoria escolhida
 
-Você não precisa saber programar nem instalar nada complicado. Em **3 passos**, o seu mentor está pronto para usar.
+**Relatório padronizado:** contexto, achado, impacto em confidencialidade,
+integridade e disponibilidade, probabilidade, severidade, MITRE ATT&CK,
+correção e validação. Uma matriz didática permite comparar cenários com
+justificativas e indicação de incerteza. Não é CVSS.
 
----
+| Skill adicionada | Quando usar | Processo |
+|---|---|---|
+| Análise de vulnerabilidades | Revisão defensiva de código ou infraestrutura de laboratório | [SKILL.md](skills/vulnerability-analysis/SKILL.md) |
 
-## ✨ Três palavras para começar
+As seis skills originais foram preservadas. A lista completa está no
+[AGENTS.md](AGENTS.md) e o guia original em [README-base.md](README-base.md).
 
-- 🧠 **Agente de IA:** um chatbot responde perguntas. Um *agente* vai além: lê, planeja e executa passos para ajudar você a alcançar um objetivo. É a diferença entre alguém que explica o caminho e alguém que caminha junto com você.
-- 🖥️ **Harness:** é o programa onde o agente roda. O agente é o mentor, e o harness é a sala onde vocês se encontram. O mesmo mentor atende em salas diferentes, por isso o DIO Agent funciona em vários harnesses.
-- 🧩 **Skill:** é uma habilidade do agente, descrita em um guia passo a passo. Você não precisa chamar a skill: o agente percebe o que você precisa e usa a certa sozinho.
+## Arquivos criados e alterados
 
-Esses e outros termos estão no [Glossário](docs/glossary.md).
+| Arquivo | Papel |
+|---|---|
+| [skills/vulnerability-analysis/SKILL.md](skills/vulnerability-analysis/SKILL.md) | Roteiro do agente com `name` e `description` |
+| [skills/vulnerability-analysis/README.md](skills/vulnerability-analysis/README.md) | Explicação para pessoas |
+| [agent/knowledge/security-basics.md](agent/knowledge/security-basics.md) | Conceitos, C/I/D, matriz e boas práticas |
+| [agent/persona.md](agent/persona.md) | Especialização defensiva da persona |
+| [AGENTS.md](AGENTS.md) | Registro da skill e do conhecimento |
+| [examples/app_vulneravel.py](examples/app_vulneravel.py) | Login vulnerável isolado, em memória |
+| [app.py](app.py) | Login corrigido com parâmetros e hash de senha com sal |
+| [tests/test_login.py](tests/test_login.py) | Reprodução e regressão da falha |
+| [docs/analise-sql-injection.md](docs/analise-sql-injection.md) | Análise técnica do laboratório |
+| [docs/cenarios.md](docs/cenarios.md) | Prompts e critérios para testar o agente |
+| [docs/evidencias.md](docs/evidencias.md) | Evidências reais e roteiro de capturas |
+| [docs/publicacao.md](docs/publicacao.md) | Publicação na sua conta |
 
----
+## Execute o laboratório
 
-## 🚀 Comece em 3 passos
+Requer Python 3.11 ou superior com SQLite. Sem dependências externas, serviço
+web, portas abertas ou banco persistente. Todos os dados são fictícios.
+Depois de clonar ou extrair o repositório, abra a pasta que contém este
+README no VS Code e use **Terminal → Novo Terminal**. Execute:
 
-### 1️⃣ Instale um harness
-
-Recomendamos o **Google Antigravity**, que tem limites de uso generosos para quem está começando. Mas qualquer harness da lista funciona: escolha um e siga a instalação da documentação oficial dele.
-
-| Harness | Documentação oficial |
-|---------|----------------------|
-| Google Antigravity (recomendado) | https://antigravity.google/docs |
-| Claude Code | https://code.claude.com/docs |
-| Codex | https://developers.openai.com/codex |
-| OpenCode | https://opencode.ai/docs |
-| Hermes | https://hermes-agent.nousresearch.com/docs |
-
-### 2️⃣ Baixe o DIO Agent e abra no harness
-
-Baixe este repositório do jeito mais simples para você:
-
-- **Com Git:** no terminal, rode `git clone https://github.com/digitalinnovationone/dio-agent.git`
-- **Sem Git:** no topo desta página, clique no botão verde **Code**, depois em **Download ZIP**, e extraia a pasta.
-
-Depois, abra no harness a pasta do projeto, a que tem o arquivo `AGENTS.md` (pelo Git, ela se chama `dio-agent`; pelo .zip, `dio-agent-main`). O harness lê esse arquivo sozinho, e o agente já sabe quem é: o seu mentor de estudos da DIO.
-
-### 3️⃣ Converse
-
-Fale naturalmente, com as suas palavras. Nas primeiras vezes, vale usar um dos [modelos de prompt](#-modelos-de-prompt) abaixo: quanto mais contexto você dá, melhor o agente ajuda.
-
----
-
-## 🧩 As skills do agente
-
-| Skill | Para que serve | Experimente pedir |
-|-------|----------------|-------------------|
-| [Plano de estudos](skills/study-plan/SKILL.md) | Organiza o que estudar, em que ordem e em quanto tempo | "Quero concluir este Bootcamp em 2 meses, me ajuda?" |
-| [Destravar desafio](skills/unblock-challenge/SKILL.md) | Conduz você até a solução de um desafio, sem dar a resposta pronta | "Travei nesse desafio, me ajuda?" |
-| [Explicar conceito](skills/explain-concept/SKILL.md) | Explica conceitos de forma simples, com analogias e exemplos | "Não entendi o que é uma API." |
-| [Pesquisa na web](skills/web-search/SKILL.md) | Responde dúvidas atuais (versões, lançamentos, mercado) com fontes citadas | "Qual a versão estável do Node hoje?" |
-| [Revisão de portfólio](skills/portfolio-review/SKILL.md) | Dá feedback sobre o seu portfólio e GitHub antes de buscar vagas | "O que falta no meu GitHub para uma vaga júnior?" |
-| [Caminho AI Builder](skills/ai-builder-path/SKILL.md) | Ajuda você a escolher o próximo passo na Carreira AI Builder | "Qual Formação AI Builder combina comigo?" |
-
-A pesquisa na web usa a busca do seu harness. Se ele não tiver busca própria, veja [como conectar o You.com](docs/youcom-mcp.md), que tem uma opção gratuita.
-
----
-
-## 📝 Modelos de prompt
-
-Copie, preencha o que está entre colchetes e envie. Não precisa de formato perfeito: o agente pede mais detalhes se precisar.
-
-**🗺️ Plano de estudos**
-
-```
-Quero montar um plano de estudos.
-- Meu objetivo: [ex: ser dev back-end, concluir um Bootcamp]
-- O que quero fazer na DIO: [link ou nome do Bootcamp, Formação, Aceleração ou Carreira]
-- O que já tenho: [um plano de ação ou de estudos, se tiver]
-- Meu nível hoje: [iniciante, intermediário, avançado]
-- Tempo disponível: [ex: 1 hora por dia, de segunda a sexta]
+```powershell
+python examples/app_vulneravel.py
+python app.py
+python -m unittest discover -s tests -v
 ```
 
-**🔓 Destravar desafio**
+Na amostra vulnerável, o bypass retorna `True`; na corrigida, `False`.
+O login legítimo continua retornando `True`. A amostra vulnerável também
+guarda senha em texto puro; a correção usa PBKDF2-HMAC-SHA256 e sal individual.
+Leia a [análise](docs/analise-sql-injection.md) para entender o mecanismo e
+os limites. Não disponibilize a amostra vulnerável como serviço.
 
-```
-Estou travado em um Desafio de [Código, Projeto ou Criativo] da DIO.
-- O que o desafio pede: [cole o enunciado ou, no Desafio de Projeto, o link do repositório do desafio]
-- Onde eu travei: [explique o ponto da dificuldade]
-- Meu código ou repositório: [cole o código ou o link, se tiver]
-Me ajuda a destravar sem dar a resposta pronta.
-```
+## Rode o agente no Hermes
 
-**💡 Explicar conceito**
+1. Siga a [instalação oficial do Hermes](https://hermes-agent.nousresearch.com/docs/getting-started/installation),
+   que documenta Windows nativo e Linux/WSL2. Para a CLI no Windows, o
+   comando oficial é `iex (irm https://hermes-agent.nousresearch.com/install.ps1)`.
+2. Abra um novo terminal e execute `hermes setup` para configurar seu provedor
+   e modelo. Pode exigir conta e ter custos conforme o provedor. Mantenha
+   credenciais na configuração local, fora do repositório.
+3. No terminal do VS Code, **entre na pasta deste projeto**, onde está
+   `AGENTS.md`, e execute `hermes`.
+4. Peça que leia `AGENTS.md`, `agent/persona.md`, o conhecimento de segurança
+   e a nova skill. Confira se consegue localizar os arquivos; não presuma
+   que a leitura ocorreu só porque a sessão iniciou.
+5. Use os [cenários](docs/cenarios.md), registrando a pergunta de contexto,
+   a análise e a revisão da correção.
 
-```
-Me explica o conceito de [ex: API, laço de repetição, herança].
-- Meu nível: [nunca vi, já ouvi falar, quero aprofundar]
-```
+Na instalação preparada nesta máquina, o diretório `skills/` já está
+registrado no Hermes. Para pré-carregar a especialização explicitamente:
 
-**🧭 Caminho AI Builder**
-
-```
-Quero escolher meu próximo passo na Carreira AI Builder.
-- O que quero construir com IA: [ex: um produto para o meu negócio, um software, agentes que automatizam processos, ainda não sei]
-- Minha experiência com programação: [nenhuma, o básico, trabalho com desenvolvimento]
-- Meu objetivo: [ex: mudar de carreira, tirar uma ideia do papel]
-```
-
----
-
-## 🔄 Mantenha o DIO Agent atualizado
-
-O DIO Agent evolui com o tempo. Se você usou Git, rode `git pull` no terminal, dentro da pasta (ou peça para o próprio agente rodar). Se baixou o .zip, baixe de novo.
-
----
-
-## 🗂️ Estrutura do repositório
-
-```
-dio-agent/
-├── README.md                Este guia
-├── AGENTS.md                Definição do agente (lida pelo harness)
-├── CLAUDE.md                Atalho para o Claude Code
-├── agent/
-│   ├── persona.md           A personalidade e o tom do agente
-│   └── knowledge/           O que o agente sabe sobre a DIO
-├── skills/                  Uma pasta por skill, cada uma com o seu SKILL.md
-└── docs/
-    ├── glossary.md          Glossário de termos
-    └── youcom-mcp.md        Como conectar a busca do You.com
+```powershell
+./scripts/hermes-local.ps1 chat --skills vulnerability-analysis --provider openrouter --model nvidia/nemotron-3.5-lightning:free
 ```
 
----
+Em outra máquina, registre o caminho absoluto de `skills/` na opção
+`skills.external_dirs` do Hermes antes de usar esse comando. Isso permite
+ler a skill diretamente do projeto, sem copiar uma versão que fique desatualizada.
 
-## 🤝 Contribua
+Se o agente não encontrar os arquivos, confira a pasta atual e reinicie
+a sessão nela. Para diagnóstico de configuração, use `hermes doctor` e
+a documentação oficial. O laboratório Python funciona sem Hermes.
 
-Tem uma ideia de skill? Veja [como criar uma skill](skills/README.md) e abra um pull request.
+## Estado da entrega
 
----
+Código e especialização preparados, com sete testes locais aprovados.
+Hermes v0.23.4 instalado e autenticado no OpenRouter em 24/11/2026, configurado
+para modelos gratuitos. No PowerShell, `./scripts/hermes-local.ps1` inicia
+na pasta correta; o runtime local em `.tmp` não entra no Git.
+Confira a [saída real dos testes](docs/validacao-local.txt), a
+[verificação da instalação](docs/instalacao-hermes.txt) e as
+[evidências](docs/evidencias.md). As três conversas foram executadas e
+registradas, com [exportações visuais reais](docs/evidencias-hermes/exportacoes/README.md).
+Essas imagens renderizam os logs; não são screenshots do Hermes.
+A avaliação encontrou limitações de pontuação de risco e adesão ao roteiro,
+documentadas sem alterar as respostas originais. A publicação pública ainda
+precisa ser concluída. O [roteiro de publicação](docs/publicacao.md) explica
+como conectar o repositório da sua conta e enviar o commit preparado.
 
-## 💬 Sobre este projeto
-
-O DIO Agent foi criado para acompanhar você nos Bootcamps e Formações da DIO. A ideia é simples: aprender na era da IA fica mais fácil quando você tem um mentor disponível a qualquer hora.
-
-Bons estudos, e vem com a gente. 🚀
+Origem: DIO Agent, commit `5f5e11d95583d0eabcd883b214ef0e51bfb8889c`.
+Esta é uma evolução educacional independente. Antes de entregar, revise
+a skill com suas próprias palavras e consiga explicar a correção.

@@ -1,0 +1,33 @@
+Local validation - 2026-11-18T14:57:59.940934+00:00
+3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]
+
+> python examples/app_vulneravel.py
+Login legítimo: True
+Bypass por SQL Injection: True
+
+
+exit_code=0
+
+> python app.py
+Login legítimo: True
+Bypass por SQL Injection: False
+
+
+exit_code=0
+
+> python -m unittest discover -s tests -v
+
+test_fixed_does_not_store_plaintext_password (test_login.LoginTests.test_fixed_does_not_store_plaintext_password) ... ok
+test_fixed_handles_quotes_as_data (test_login.LoginTests.test_fixed_handles_quotes_as_data) ... ok
+test_fixed_unknown_user (test_login.LoginTests.test_fixed_unknown_user) ... ok
+test_reproduce_and_block_password_bypass (test_login.LoginTests.test_reproduce_and_block_password_bypass) ... ok
+test_reproduce_and_block_username_bypass (test_login.LoginTests.test_reproduce_and_block_username_bypass) ... ok
+test_valid_login_in_both_versions (test_login.LoginTests.test_valid_login_in_both_versions) ... ok
+test_wrong_password_in_both_versions (test_login.LoginTests.test_wrong_password_in_both_versions) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.470s
+
+OK
+
+exit_code=0

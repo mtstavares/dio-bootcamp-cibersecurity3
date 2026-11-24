@@ -1,0 +1,7 @@
+{"type": "system", "subtype": "init", "model": "openrouter/free", "session_id": "", "timestamp": 1795520294247}
+{"type": "text", "text": "`", "timestamp": 1795520299679}
+{"type": "text", "text": "sudo apt update", "timestamp": 1795520299680}
+{"type": "text", "text": " && sudo apt", "timestamp": 1795520299681}
+{"type": "text", "text": " upgrade -y", "timestamp": 1795520299685}
+{"type": "text", "text": "`", "timestamp": 1795520299687}
+{"type": "result", "session_id": "local-b0d51851f7b79eeb7b0ce6eeb65db3efcd83bc972899e53af95eec9ed3f68bd9", "exit_code": 0, "text": "`sudo apt update && sudo apt upgrade -y`", "tokens": {"input": 8615, "output": 590, "total": 9205, "cache_read": 8448, "cache_write": 0}, "duration_ms": 5544, "timestamp": 1795520299791}
